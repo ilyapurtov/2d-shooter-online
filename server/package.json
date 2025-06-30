@@ -1,0 +1,17 @@
+{
+  "name": "shooter-online-server",
+  "version": "1.0.0",
+  "main": "backend.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon backend_index"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "socket.io": "^4.8.1"
+  }
+}

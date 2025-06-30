@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shooter online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas class="game" id="game"></canvas>
+    <div class="menu-scene-ui" id="menu-scene-ui" style="display: none">
+      <div class="menu-form-wrapper">
+        <form action="" class="menu-form" id="menu-form">
+          <div class="menu-form__section">
+            <label class="menu-form__label" for="nickname"
+              >Придумайте никнейм:
+            </label>
+            <input
+              type="text"
+              name="nickname"
+              id="nickname"
+              class="menu-form__input"
+            />
+          </div>
+          <div class="menu-form__section">
+            <label>Выберите скин: </label>
+            <ul class="skin-select" id="skin-select"></ul>
+          </div>
+          <button class="menu-form__button" type="submit">Играть</button>
+        </form>
+      </div>
+    </div>
+    <div class="game-scene-ui" id="game-scene-ui" style="display: none">
+      <button id="chat-opener" class="chat-opener">
+        <img src="/icons/chat.png" alt="chat" />
+      </button>
+      <div class="chat" id="chat" style="display: none">
+        <div class="chat__messages" id="chat__messages"></div>
+        <input
+          autocomplete="off"
+          class="chat__input"
+          id="chat__input"
+          type="text"
+          placeholder="Напишите что-то в чат..."
+        />
+      </div>
+    </div>
+    <div style="display: none" id="online-counter" class="online-counter">
+      Онлайн: 0
+    </div>
+    <script type="module" src="/src/frontend_index.js"></script>
+  </body>
+</html>

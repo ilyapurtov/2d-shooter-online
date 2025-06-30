@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  font-family: "Handjet";
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+}
+
+body {
+  background-color: #222333;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e6d5ea;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d0b0d9;
+  border-radius: 5px;
+}
+
+.online-counter {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  padding: 5px;
+  background-color: #000;
+  color: white;
+  z-index: 9999;
+}
+
+.preloader {
+  position: fixed;
+  background-color: #000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  line-height: 100vh;
+  color: white;
+  font-size: 28px;
+}
