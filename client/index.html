@@ -13,31 +13,37 @@
     />
   </head>
   <body>
+    <!-- game canvas -->
     <canvas class="game" id="game"></canvas>
+
+    <!-- menu ui -->
     <div class="menu-scene-ui" id="menu-scene-ui" style="display: none">
       <div class="menu-form-wrapper">
-        <form action="" class="menu-form" id="menu-form">
-          <div class="menu-form__section">
-            <label class="menu-form__label" for="nickname"
+        <form action="" class="menu-form form" id="menu-form">
+          <div class="form__section form__section_flex">
+            <label class="form__label" for="nickname"
               >Придумайте никнейм:
             </label>
             <input
               type="text"
               name="nickname"
               id="nickname"
-              class="menu-form__input"
+              class="form__input"
             />
           </div>
-          <div class="menu-form__section">
+          <div class="form__section form__section_flex">
             <label>Выберите скин: </label>
             <ul class="skin-select" id="skin-select"></ul>
           </div>
-          <button class="menu-form__button" type="submit">Играть</button>
+          <button class="form__button" type="submit">Играть</button>
         </form>
       </div>
     </div>
+
+    <!-- game ui -->
     <div class="game-scene-ui" id="game-scene-ui" style="display: none">
-      <button id="chat-opener" class="chat-opener">
+      <!-- chat ui -->
+      <button id="chat-opener" class="opener chat-opener">
         <img src="/icons/chat.png" alt="chat" />
       </button>
       <div class="chat" id="chat" style="display: none">
@@ -50,10 +56,19 @@
           placeholder="Напишите что-то в чат..."
         />
       </div>
+
+      <!-- settings ui -->
+      <button class="opener settings-opener" id="settings-opener">
+        <img src="/icons/settings.png" alt="settings" />
+      </button>
+      <div class="settings-wrapper" id="settings" style="display: none">
+        <div class="form settings-form" id="settings-form"></div>
+      </div>
     </div>
     <div style="display: none" id="online-counter" class="online-counter">
       Онлайн: 0
     </div>
+
     <script type="module" src="/src/frontend_index.js"></script>
   </body>
 </html>

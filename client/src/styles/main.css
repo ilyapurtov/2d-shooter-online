@@ -51,3 +51,87 @@ body {
   color: white;
   font-size: 28px;
 }
+
+.form {
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form__title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form__input,
+.form__select {
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.form__input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.form__input[type="checkbox"]:checked {
+  background-color: #cd54df;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+.form__input:focus {
+  border-color: #e1bff6;
+}
+
+.form__label {
+  margin-bottom: 5px;
+}
+
+.form__button {
+  width: 100%;
+  background-color: #7f40ab;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.form__button:hover {
+  background-color: #6b3591;
+}
+
+.form__section {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.form__section_flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.opener {
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 9px 6px 6px 6px;
+  border-radius: 5px;
+  z-index: 999;
+}
+
+.opener img {
+  width: 24px;
+  filter: invert();
+}
+
+.opener.active {
+  background: rgba(150, 150, 150, 0.4);
+}

@@ -1,13 +1,14 @@
 import { Player } from "../engine/Player";
+import { EventHelper } from "../helpers/EventHelper";
 import { gsap } from "gsap";
 
 export class PlayerController {
+  // list of players
+  static frontendPlayers = {};
+
   constructor({ socket, config }) {
     this.socket = socket;
     this.config = config;
-
-    // list of players
-    this.frontendPlayers = {};
 
     // current player moving state
     this.moving = {
@@ -29,7 +30,7 @@ export class PlayerController {
       const backendPlayer = backendPlayers[id];
 
       // adding new frontend player if not exists
-      if (!this.frontendPlayers[id]) {
+      if (!PlayerController.frontendPlayers[id]) {
         // loading skin
         const skin = new Image();
         skin.src =
@@ -37,7 +38,7 @@ export class PlayerController {
           `/player${backendPlayer.skinNumber}.jpg`;
 
         // creating new player object
-        this.frontendPlayers[id] = new Player({
+        PlayerController.frontendPlayers[id] = new Player({
           x: backendPlayer.x,
           y: backendPlayer.y,
           width: this.config.player.width,
@@ -49,8 +50,8 @@ export class PlayerController {
       } else {
         if (id == this.socket.id) {
           // for current player we do server reconciliation to reduce lagging
-          this.frontendPlayers[id].x = backendPlayer.x;
-          this.frontendPlayers[id].y = backendPlayer.y;
+          PlayerController.frontendPlayers[id].x = backendPlayer.x;
+          PlayerController.frontendPlayers[id].y = backendPlayer.y;
 
           // number of last event emitted on server
           const serverSequenceNumber = backendPlayer.sequenceNumber;
@@ -62,12 +63,12 @@ export class PlayerController {
           }
           // reconciliating remained events that were lagged
           this.playerInputs.forEach((input) => {
-            this.frontendPlayers[id].x += input.dx;
-            this.frontendPlayers[id].y += input.dy;
+            PlayerController.frontendPlayers[id].x += input.dx;
+            PlayerController.frontendPlayers[id].y += input.dy;
           });
         } else {
           // for other players we do interpolation to make their movement smoother
-          gsap.to(this.frontendPlayers[id], {
+          gsap.to(PlayerController.frontendPlayers[id], {
             x: backendPlayer.x,
             y: backendPlayer.y,
             duration: 1 / this.config.game.fps,
@@ -78,16 +79,16 @@ export class PlayerController {
     }
 
     // checking and deleting disconnected players
-    for (const id in this.frontendPlayers) {
+    for (const id in PlayerController.frontendPlayers) {
       if (!backendPlayers[id]) {
-        delete this.frontendPlayers[id];
+        delete PlayerController.frontendPlayers[id];
       }
     }
   }
 
   // predicting current player movement and sending data on the server
   update() {
-    const player = this.frontendPlayers[this.socket.id];
+    const player = PlayerController.frontendPlayers[this.socket.id];
     if (!player) return;
     const speed = this.config.player.speed;
     if (this.moving.up) {
@@ -134,9 +135,11 @@ export class PlayerController {
 
   // render all players
   render(ctx) {
-    for (const id in this.frontendPlayers) {
-      const player = this.frontendPlayers[id];
+    for (const id in PlayerController.frontendPlayers) {
+      const player = PlayerController.frontendPlayers[id];
       player.render(ctx);
+
+      EventHelper.callEvent("game.player.render", { ctx, player });
     }
   }
 }

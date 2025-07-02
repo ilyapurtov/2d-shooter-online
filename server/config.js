@@ -1,3 +1,5 @@
+import { internalConfig } from "./internal.config.js";
+
 export const config = {
   game: {
     width: 1280,
@@ -23,4 +25,5 @@ export const config = {
   chat: {
     maxLength: 100,
   },
+  plugins: internalConfig.plugins.list,
 };

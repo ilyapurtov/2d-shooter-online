@@ -31,6 +31,7 @@ export class Game {
     this.background.src = "/background.jpg";
     this.background.onload = () => {
       // showing menu
+      //this.hidePreloader();
       this.startMenu();
     };
 

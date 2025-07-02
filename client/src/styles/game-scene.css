@@ -2,20 +2,6 @@
   position: fixed;
   left: 10px;
   top: 10px;
-  background: rgba(0, 0, 0, 0.2);
-  border: none;
-  cursor: pointer;
-  padding: 9px 6px 6px 6px;
-  border-radius: 5px;
-}
-
-.chat-opener.active {
-  background: rgba(150, 150, 150, 0.4);
-}
-
-.chat-opener img {
-  width: 24px;
-  filter: invert();
 }
 
 .chat {
@@ -48,4 +34,39 @@
   left: 50vw;
   top: 50vh;
   transform: translate(-50%, -50%);
+}
+
+.settings-opener {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+}
+
+.settings-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  min-height: 100vh;
+  z-index: 998;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.settings-form {
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+}
+
+.settings-form__section {
+  display: flex;
+}
+
+.settings-form__section > *:not(:last-child) {
+  margin-right: 7px;
+}
+
+.settings-form__section select {
+  flex-grow: 1;
 }

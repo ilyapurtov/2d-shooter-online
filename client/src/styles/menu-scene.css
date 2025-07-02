@@ -17,49 +17,6 @@
   backdrop-filter: blur(5px) brightness(60%) grayscale(0.5);
 }
 
-.menu-form {
-  width: 400px;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 5px;
-}
-
-.menu-form__input {
-  padding: 5px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-}
-
-.menu-form__input:focus {
-  border-color: #e1bff6;
-}
-
-.menu-form__label {
-  margin-bottom: 5px;
-}
-
-.menu-form__button {
-  width: 100%;
-  background-color: #7f40ab;
-  color: white;
-  border: 0;
-  border-radius: 5px;
-  padding: 8px;
-  cursor: pointer;
-}
-
-.menu-form__button:hover {
-  background-color: #6b3591;
-}
-
-.menu-form__section {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ccc;
-  display: flex;
-  flex-direction: column;
-}
-
 .skin-select {
   list-style: none;
   display: flex;

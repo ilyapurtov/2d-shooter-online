@@ -1,8 +1,11 @@
 import { ChatController } from "../controllers/ChatController";
 import { PlayerController } from "../controllers/PlayerController";
 import { ProjectileController } from "../controllers/ProjectileController";
+import { PluginController } from "../controllers/PluginController";
 import { Scene } from "../engine/Scene";
 import "../styles/game-scene.css";
+import { EventHelper } from "../helpers/EventHelper";
+import { SettingsController } from "../controllers/SettingsController";
 
 export class GameScene extends Scene {
   constructor({ ctx, width, height, background, socket, config }) {
@@ -26,6 +29,11 @@ export class GameScene extends Scene {
     this.projectileController = new ProjectileController({
       config,
     });
+    this.settingsController = new SettingsController();
+
+    // loading plugins
+    this.pluginController = new PluginController({ socket, config });
+    this.pluginController.init();
 
     // setting up event listeners
     this.listenToServerEvents();
@@ -39,8 +47,8 @@ export class GameScene extends Scene {
         this.chatController = new ChatController(
           this.UIContainer,
           this.socket,
-          this.playerController.frontendPlayers[this.socket.id].nickname,
-          this.playerController.frontendPlayers[this.socket.id].color
+          PlayerController.frontendPlayers[this.socket.id].nickname,
+          PlayerController.frontendPlayers[this.socket.id].color
         );
       }
     });
@@ -65,6 +73,8 @@ export class GameScene extends Scene {
     window.addEventListener("keydown", (event) => {
       if (this.chatController?.inputElement.dataset.focused) return;
 
+      EventHelper.callEvent("game.keydown", event);
+
       switch (event.code) {
         case "KeyW":
           this.playerController.moving.up = true;
@@ -82,6 +92,10 @@ export class GameScene extends Scene {
     });
 
     window.addEventListener("keyup", (event) => {
+      if (this.chatController?.inputElement.dataset.focused) return;
+
+      EventHelper.callEvent("game.keyup", event);
+
       switch (event.code) {
         case "KeyW":
           this.playerController.moving.up = false;
@@ -99,8 +113,7 @@ export class GameScene extends Scene {
     });
 
     this.ctx.canvas.addEventListener("click", (event) => {
-      const currentPlayer =
-        this.playerController.frontendPlayers[this.socket.id];
+      const currentPlayer = PlayerController.frontendPlayers[this.socket.id];
       if (!currentPlayer) return;
 
       const clientX = event.clientX;
